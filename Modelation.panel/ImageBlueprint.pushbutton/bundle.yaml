@@ -1,0 +1,5 @@
+layout:
+  - Blueprint
+context: zero-doc
+title: Image Blueprint
+tooltip: Criar ambiente a partir de imagem de planta baixa
