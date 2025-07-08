@@ -39,11 +39,14 @@ level = FilteredElementCollector(doc).OfClass(Level).FirstElement()
 if not basic_wall_type or not level:
     TaskDialog.Show("Error", "A valid Wall Type or Level could not be found.")
 else:
-    # -- 4. DEFINE CORNER POINTS (in Meters) --
-    p1 = XYZ(0, 0, 0)
-    p2 = XYZ(room_width_m, 0, 0)
-    p3 = XYZ(room_width_m, room_depth_m, 0)
-    p4 = XYZ(0, room_depth_m, 0)
+    # -- 4. DEFINE CORNER POINTS (in Meters) - CENTERED AT ORIGIN --
+    half_width = room_width_m / 2.0
+    half_depth = room_depth_m / 2.0
+    
+    p1 = XYZ(-half_width, -half_depth, 0)  # Bottom-left
+    p2 = XYZ(half_width, -half_depth, 0)   # Bottom-right
+    p3 = XYZ(half_width, half_depth, 0)    # Top-right
+    p4 = XYZ(-half_width, half_depth, 0)   # Top-left
     
     points_in_meters = [p1, p2, p3, p4]
     
