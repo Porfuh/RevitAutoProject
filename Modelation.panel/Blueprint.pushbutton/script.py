@@ -9,7 +9,7 @@ from Autodesk.Revit.UI import TaskDialog
 # Get the active Revit document
 doc = __revit__.ActiveUIDocument.Document
 
-# -- 1. THE BLUEPRINT DATA (in Meters) --
+# -- 1. THE BLUEPRINT DATA (in Meters) -- SESCSO
 room_width_m = 4.0
 room_depth_m = 5.0
 wall_height_m = 2.7
