@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from Autodesk.Revit.DB import (
-    FilteredElementCollector, BuiltInParameter, Wall, Level, WallType,
+    FilteredElementCollector, Wall, Level, WallType,
     Line, XYZ, Transaction
 )
 from Autodesk.Revit.UI import TaskDialog
@@ -36,7 +36,7 @@ for w_type in all_wall_types:
 level = FilteredElementCollector(doc).OfClass(Level).FirstElement()
 
 # Check if we found what we need before continuing
-if not wall_type or not level:
+if not basic_wall_type or not level:
     TaskDialog.Show("Error", "A valid Wall Type or Level could not be found.")
 else:
     # -- 4. DEFINE CORNER POINTS (in Meters) --
@@ -48,7 +48,7 @@ else:
     points_in_meters = [p1, p2, p3, p4]
     
     # -- 5. CONVERT to the API's required units (Feet) --
-    points_in_feet = [meters_to_feet(p) for p in points_in_meters]
+    points_in_feet = [XYZ(meters_to_feet(p.X), meters_to_feet(p.Y), meters_to_feet(p.Z)) for p in points_in_meters]
     wall_height_feet = meters_to_feet(wall_height_m)
     
     # -- 6. CREATE THE WALLS (within a Transaction) --
